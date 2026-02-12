@@ -4,31 +4,31 @@ const sampleVideos = [
         id: 1,
         title: "CEO Leadership in Crisis",
         description: "Deep insights into navigating business challenges during uncertain times",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-        url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
+        videoSrc: "assets/video/video2.mp4",
+        thumbnail: "assets/images/hero2.png",
         category: "ceo"
     },
     {
         id: 2,
         title: "Innovation in South African Business",
         description: "Exploring breakthrough strategies from industry pioneers",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-        url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
+        videoSrc: "assets/video/video3.mp4",
+        thumbnail: "assets/images/hero3.png",
         category: "innovation"
     },
     {
         id: 3,
         title: "Building Billion-Dollar Companies",
         description: "Success stories from entrepreneurs who scaled globally",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-        url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
+        videoSrc: "assets/video/video4.mp4",
+        thumbnail: "assets/images/hero4.png",
         category: "entrepreneurship"
     },
     {
         id: 4,
         title: "Digital Transformation Strategies",
         description: "How industry leaders are adapting to the digital age",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+        thumbnail: "assets/images/hero5.png",
         url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
         category: "leadership"
     },
@@ -36,7 +36,7 @@ const sampleVideos = [
         id: 5,
         title: "Entrepreneurship in Emerging Markets",
         description: "Opportunities and challenges in developing economies",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+        thumbnail: "assets/images/hero6.png",
         url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
         category: "entrepreneurship"
     },
@@ -44,7 +44,7 @@ const sampleVideos = [
         id: 6,
         title: "Future of Business Media",
         description: "Vision for the next generation of business content",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+        thumbnail: "assets/images/hero-slide-1.jpg",
         url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
         category: "innovation"
     },
@@ -52,7 +52,7 @@ const sampleVideos = [
         id: 7,
         title: "Leadership in Times of Change",
         description: "Adaptive leadership strategies for uncertain times",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+        thumbnail: "assets/images/hero2.png",
         url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
         category: "leadership"
     },
@@ -60,7 +60,7 @@ const sampleVideos = [
         id: 8,
         title: "CEO Insights: Scaling Globally",
         description: "International expansion strategies from successful CEOs",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+        thumbnail: "assets/images/hero3.png",
         url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
         category: "ceo"
     }
@@ -74,12 +74,46 @@ function createVideoCard(video) {
     const cardElement = document.createElement('div');
     cardElement.className = 'video-card';
     cardElement.setAttribute('data-category', video.category);
-    cardElement.onclick = () => openVideo(video.url);
-    
-    const thumbnail = document.createElement('img');
-    thumbnail.src = video.thumbnail;
-    thumbnail.alt = video.title;
-    thumbnail.className = 'video-thumbnail';
+
+    if (video.videoSrc) {
+        // Local video with embedded player
+        const videoWrapper = document.createElement('div');
+        videoWrapper.className = 'video-card-player';
+
+        const videoEl = document.createElement('video');
+        videoEl.controls = true;
+        videoEl.poster = video.thumbnail;
+        videoEl.preload = 'metadata';
+        videoEl.className = 'video-thumbnail';
+
+        const source = document.createElement('source');
+        source.src = video.videoSrc;
+        source.type = 'video/mp4';
+
+        videoEl.appendChild(source);
+        videoWrapper.appendChild(videoEl);
+        cardElement.appendChild(videoWrapper);
+    } else {
+        // External link with thumbnail
+        cardElement.onclick = () => openVideo(video.url);
+        cardElement.style.cursor = 'pointer';
+
+        const thumbnail = document.createElement('img');
+        thumbnail.src = video.thumbnail;
+        thumbnail.alt = video.title;
+        thumbnail.className = 'video-thumbnail';
+
+        const playOverlay = document.createElement('div');
+        playOverlay.className = 'play-overlay';
+        playOverlay.innerHTML = '<i class="fas fa-play-circle"></i>';
+
+        const thumbWrapper = document.createElement('div');
+        thumbWrapper.className = 'video-card-player';
+        thumbWrapper.style.position = 'relative';
+        thumbWrapper.appendChild(thumbnail);
+        thumbWrapper.appendChild(playOverlay);
+        cardElement.appendChild(thumbWrapper);
+    }
     
     const videoInfo = document.createElement('div');
     videoInfo.className = 'video-info';
@@ -109,7 +143,6 @@ function createVideoCard(video) {
     
     videoInfo.appendChild(title);
     videoInfo.appendChild(description);
-    cardElement.appendChild(thumbnail);
     cardElement.appendChild(videoInfo);
     cardElement.appendChild(category);
     

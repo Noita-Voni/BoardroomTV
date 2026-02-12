@@ -60,9 +60,19 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
+}
+
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.hero h1,
+.hero-slogan,
+.logo span,
+.nav-menu a,
+.btn {
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container {
@@ -180,18 +190,22 @@ body {
     transition: opacity 1.2s ease-in-out;
 }
 
-.hero-slide.active {
-    opacity: 1;
-}
-
-.hero-slideshow-overlay {
+.hero-slide::after {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(30, 58, 138, 0.75) 0%, rgba(59, 130, 246, 0.7) 100%);
-    z-index: 1;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-slideshow-overlay {
+    display: none;
 }
 
 /* Hero Section */
@@ -199,7 +213,7 @@ body {
     color: var(--white);
     padding: 150px 0 100px;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 0;
     position: relative;
     overflow: hidden;
     min-height: 100vh;
@@ -287,23 +301,30 @@ body {
     padding-top: 10vh;
 }
 
+#heroTitle {
+    font-family: 'Libre Baskerville', Georgia, serif;
+}
+
 .hero h1 {
     font-size: 4rem;
-    font-weight: bold;
+    font-weight: 800;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    letter-spacing: 4px;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s ease forwards;
 }
 
 .hero-slogan {
-    font-size: 1.4rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem;
+    font-style: italic;
     margin-bottom: 1.5rem;
     color: var(--gold);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 1px;
     text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     position: relative;
 }
@@ -501,6 +522,7 @@ body {
 
 .section-title {
     text-align: center;
+    font-family: 'Libre Baskerville', Georgia, serif;
     font-size: 2.5rem;
     margin-bottom: 3rem;
     color: var(--white);
@@ -536,6 +558,20 @@ body {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
     line-height: 1.8;
+}
+
+.vision-image-card {
+    max-width: 550px;
+    margin: 2rem auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.vision-image-card img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .about-stats-horizontal {
@@ -575,7 +611,8 @@ body {
 }
 
 .counter {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
 /* Founder Section */
@@ -623,6 +660,7 @@ body {
 }
 
 .founder-text h3 {
+    font-family: 'Libre Baskerville', Georgia, serif;
     font-size: 2.2rem;
     color: var(--primary-blue);
     margin-bottom: 1.5rem;
@@ -646,7 +684,7 @@ body {
     top: -10px;
     font-size: 3rem;
     color: var(--gold);
-    font-family: serif;
+    font-family: 'Georgia', serif;
 }
 
 .founder-name {
@@ -660,27 +698,23 @@ body {
 /* Featured Video Section */
 .featured-video {
     padding: 80px 0;
-    background: linear-gradient(135deg, var(--primary-blue) 0%, rgba(30, 58, 138, 0.9) 100%);
-    color: var(--white);
+    background: var(--white);
+    color: var(--text-dark);
     position: relative;
     overflow: hidden;
 }
 
 .featured-video::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(251,191,36,0.1)"><polygon points="0,0 1000,100 1000,100 0,100"/></svg>');
-    background-size: cover;
-    z-index: 1;
+    display: none;
 }
 
 .featured-video .container {
     position: relative;
     z-index: 2;
+}
+
+.featured-video .section-title {
+    color: var(--primary-blue);
 }
 
 .video-showcase {
@@ -696,10 +730,9 @@ body {
     position: relative;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease;
 }
 
@@ -720,7 +753,7 @@ body {
 
 .video-title {
     font-size: 2rem;
-    color: var(--gold);
+    color: var(--primary-blue);
     margin-bottom: 1rem;
     line-height: 1.3;
     font-weight: 700;
@@ -741,8 +774,9 @@ body {
 
 .video-date, .video-category {
     padding: 8px 16px;
-    background: rgba(251, 191, 36, 0.2);
-    border: 1px solid var(--gold);
+    background: rgba(30, 58, 138, 0.08);
+    border: 1px solid var(--primary-blue);
+    color: var(--primary-blue);
     border-radius: 20px;
     font-size: 0.9rem;
     color: var(--gold);
@@ -856,6 +890,45 @@ body {
     transition: transform 0.4s ease;
 }
 
+.video-card-player {
+    position: relative;
+    overflow: hidden;
+}
+
+.video-card-player video {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease;
+}
+
+.play-overlay i {
+    font-size: 3rem;
+    color: var(--white);
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover .play-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.video-card:hover .play-overlay i {
+    transform: scale(1.2);
+}
+
 .video-card:hover .video-thumbnail {
     transform: scale(1.1);
 }
@@ -919,6 +992,7 @@ body {
 
 .contact h2 {
     text-align: center;
+    font-family: 'Libre Baskerville', Georgia, serif;
     font-size: 2.5rem;
     margin-bottom: 3rem;
 }
