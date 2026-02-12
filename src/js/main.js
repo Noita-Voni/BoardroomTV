@@ -104,9 +104,29 @@ function handleScrollAnimations() {
     });
 }
 
+// Hero Slideshow Auto-cycle
+function initHeroSlideshow() {
+    const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length === 0) return;
+
+    let currentSlide = 0;
+    const intervalTime = 5000; // 5 seconds per slide
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(nextSlide, intervalTime);
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Boardroom TV website loaded successfully');
+    
+    // Initialize hero slideshow
+    initHeroSlideshow();
     
     // Create particles if container exists
     if (document.getElementById('particles')) {
