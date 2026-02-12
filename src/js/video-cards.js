@@ -1,34 +1,37 @@
+// Detect if we're served from root or src/
+const basePath = document.querySelector('script[src*="src/js"]') ? 'src/' : '';
+
 // Enhanced video data with categories
 const sampleVideos = [
     {
         id: 1,
         title: "CEO Leadership in Crisis",
         description: "Deep insights into navigating business challenges during uncertain times",
-        videoSrc: "assets/video/video2.mp4",
-        thumbnail: "assets/images/hero2.png",
+        videoSrc: basePath + "assets/video/video2.mp4",
+        thumbnail: basePath + "assets/images/hero2.png",
         category: "ceo"
     },
     {
         id: 2,
         title: "Innovation in South African Business",
         description: "Exploring breakthrough strategies from industry pioneers",
-        videoSrc: "assets/video/video3.mp4",
-        thumbnail: "assets/images/hero3.png",
+        videoSrc: basePath + "assets/video/video3.mp4",
+        thumbnail: basePath + "assets/images/hero3.png",
         category: "innovation"
     },
     {
         id: 3,
         title: "Building Billion-Dollar Companies",
         description: "Success stories from entrepreneurs who scaled globally",
-        videoSrc: "assets/video/video4.mp4",
-        thumbnail: "assets/images/hero4.png",
+        videoSrc: basePath + "assets/video/video4.mp4",
+        thumbnail: basePath + "assets/images/hero4.png",
         category: "entrepreneurship"
     },
     {
         id: 4,
         title: "Digital Transformation Strategies",
         description: "How industry leaders are adapting to the digital age",
-        thumbnail: "assets/images/hero5.png",
+        thumbnail: basePath + "assets/images/hero5.png",
         url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
         category: "leadership"
     },
@@ -36,7 +39,7 @@ const sampleVideos = [
         id: 5,
         title: "Entrepreneurship in Emerging Markets",
         description: "Opportunities and challenges in developing economies",
-        thumbnail: "assets/images/hero6.png",
+        thumbnail: basePath + "assets/images/hero6.png",
         url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
         category: "entrepreneurship"
     },
@@ -44,7 +47,7 @@ const sampleVideos = [
         id: 6,
         title: "Future of Business Media",
         description: "Vision for the next generation of business content",
-        thumbnail: "assets/images/hero-slide-1.jpg",
+        thumbnail: basePath + "assets/images/hero-slide-1.jpg",
         url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
         category: "innovation"
     },
@@ -52,7 +55,7 @@ const sampleVideos = [
         id: 7,
         title: "Leadership in Times of Change",
         description: "Adaptive leadership strategies for uncertain times",
-        thumbnail: "assets/images/hero2.png",
+        thumbnail: basePath + "assets/images/hero2.png",
         url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
         category: "leadership"
     },
@@ -60,7 +63,7 @@ const sampleVideos = [
         id: 8,
         title: "CEO Insights: Scaling Globally",
         description: "International expansion strategies from successful CEOs",
-        thumbnail: "assets/images/hero3.png",
+        thumbnail: basePath + "assets/images/hero3.png",
         url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
         category: "ceo"
     }
